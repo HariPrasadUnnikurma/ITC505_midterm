@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Choose Your Own Adventure — Whispers on Willow Lane</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+<header class="site-header" role="banner">
+<h1>Whispers on Willow Lane</h1>
+<p class="tagline">An interactive fiction built with HTML, CSS, and JavaScript</p>
+</header>
+
+
+<main id="app" class="container" role="main">
+<section id="story" class="story" aria-live="polite"></section>
+
+
+<section id="image" class="image-wrap" aria-live="polite" aria-label="Story illustration">
+<img id="storyImage" alt="" />
+<figcaption id="imageCaption" class="caption"></figcaption>
+</section>
+
+
+<section id="choices" class="choices" aria-label="Choices"></section>
+
+
+<section class="controls">
+<button id="restartBtn" class="btn outline" type="button" aria-label="Restart the adventure">Restart</button>
+</section>
+</main>
+
+
+<footer>
+<p>Last updated:
+<span id="lastModified"></span>
+</p>
+</footer>
+<script type="text/javascript">
+var x = document.lastModified;
+document.getElementById('lastModified').textContent = x;
+</script>
+
+
+<script src="script.js" defer></script>
+</body>
+</html>
