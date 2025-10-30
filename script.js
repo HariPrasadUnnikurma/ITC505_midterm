@@ -5,7 +5,7 @@
 // Data model
 // - Each scene: key, text, art, caption, options[]
 // - An ending has options: []
-// - 10 endings, all with distinct images
+// - 10 endings (kept), but early ones are now pushed later
 
 const scenesMap = {
   gate: {
@@ -61,9 +61,34 @@ const scenesMap = {
     art: 'https://picsum.photos/seed/bridgewillow/960/540',
     caption: 'Messages caught where water slows.',
     options: [
-      { label: 'Pull up the string', go: 'ending_charm' },
+      // keep one quick ending if you like a short route; otherwise route to mid-scenes
       { label: 'Follow the creek upstream', go: 'shed' },
-      { label: 'Wait and watch', go: 'ending_watch' },
+      { label: 'Wait and watch', go: 'stakeout' },      // mid-scene
+      { label: 'Pull up the string', go: 'charm_clue' } // mid-scene
+    ],
+  },
+
+  // Mid-scenes added to lengthen play
+  charm_clue: {
+    key: 'charm_clue',
+    text: 'The letters clink together forming “5 • 7 • SHED”. Someone is guiding you.',
+    art: 'https://picsum.photos/seed/charmclue/960/540',
+    caption: 'A message when assembled.',
+    options: [
+      { label: 'Head to the shed', go: 'shed' },
+      { label: 'Check house 5', go: 'house5' },
+      { label: 'Go to house 7', go: 'house7' },
+    ],
+  },
+
+  stakeout: {
+    key: 'stakeout',
+    text: 'You wait. Footsteps pass at midnight—someone leaves a parcel on house 7 and slips away.',
+    art: 'https://picsum.photos/seed/stakeout/960/540',
+    caption: 'Patience earns a lead.',
+    options: [
+      { label: 'Follow to house 7', go: 'house7' },
+      { label: 'Search the creek bank', go: 'yard' },
     ],
   },
 
@@ -113,18 +138,44 @@ const scenesMap = {
     ],
   },
 
+  // UPDATED: house7 now routes to mid-scenes instead of endings
   house7: {
     key: 'house7',
     text: 'An empty porch. A parcel waits: **PLEASE DELIVER** to the shed.',
     art: 'https://picsum.photos/seed/house7/960/540',
     caption: 'Promises left on steps.',
     options: [
-      { label: 'Open the parcel now', go: 'ending_open' },
-      { label: 'Deliver it to the shed', go: 'ending_return' },
+      { label: 'Open the parcel now', go: 'open_parcel' },     // mid-scene
+      { label: 'Deliver it to the shed', go: 'deliver_parcel' } // mid-scene
     ],
   },
 
-  // ===== Endings (10 total) =====
+  // New mid-scenes to extend play from house7
+  open_parcel: {
+    key: 'open_parcel',
+    text: 'Inside: cookies and letter-stamps forming **THANK YOU**. There’s also a smudged note: *“5 • BRIDGE • LISTEN”*.',
+    art: 'https://picsum.photos/seed/openparcelclue/960/540',
+    caption: 'A sweeter clue than expected.',
+    options: [
+      { label: 'Take stamps to the shed', go: 'shed' },
+      { label: 'Go to house 5 with the note', go: 'house5' },
+      { label: 'Head to the bridge to investigate', go: 'bridge' },
+    ],
+  },
+
+  deliver_parcel: {
+    key: 'deliver_parcel',
+    text: 'You place the parcel in the shed. Fresh footprints arc back toward the **board** and the **yard**.',
+    art: 'https://picsum.photos/seed/deliverparcel/960/540',
+    caption: 'A delivery, and a direction.',
+    options: [
+      { label: 'Check the ledger in the shed', go: 'ledger' },
+      { label: 'Follow footprints to the yard', go: 'yard' },
+      { label: 'Return to the community board', go: 'board' },
+    ],
+  },
+
+  // ===== Endings (10 total, reachable later) =====
   ending_mail: {
     key: 'ending_mail',
     text: 'The mailbox snaps. A raccoon rockets out. You retreat with dignity minus one scream. *(Ending: Mailbox Menace)*',
