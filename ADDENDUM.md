@@ -1,38 +1,21 @@
-# Addendum: Process, Creative Choices, and Debugging Notes
+# Addendum – ITC505 Mid-Term Project
 
+## Process and Creative Choices
+I designed an interactive story titled *Whispers on Willow Lane* using HTML, CSS, and JavaScript.  
+I began by mapping out the story structure with multiple choices and at least eight possible endings.  
+The story was coded in an object-based format, allowing each node to contain text, options, and images.  
+I used event listeners to dynamically update the story content and change images as users made choices.
 
-## Concept & Planning
-- **Theme**: "Starship at the Crossroads" — high‑stakes choices around knowledge, power, and ethics.
-- **Flow Design**: Sketched a node graph with one start, several mid‑nodes, and **10 distinct endings**. Ensured no dead links.
+## Challenges and Solutions
+- **Challenge:** Some story paths ended too early.  
+  **Solution:** Added extra mid-scenes (`open_parcel`, `deliver_parcel`) to make the game longer.  
+- **Challenge:** Syntax errors and blank screens during testing.  
+  **Solution:** Used browser console to locate syntax issues and fixed commas/semicolons.
 
+## Insights Gained
+This project helped me understand DOM manipulation, dynamic content updates, and JavaScript objects.  
+I also learned to debug syntax errors and deploy projects using GitHub Pages.
 
-## Implementation Choices
-- **Data‑driven story**: Every stage is a JSON node with `text`, `choices`, `image`, and `caption`. This made it easy to add/rename branches.
-- **DOM updates**: A single `updatePage()` re-renders story text, image, and dynamic buttons with event listeners.
-- **Accessibility**: `aria-live` regions announce updates; buttons have descriptive `aria-label`s.
-- **Images**: Used `picsum.photos` seeded URLs to guarantee unique images for each ending without hosting assets.
-- **Styling**: Clean, responsive card layout; readable typography; focus on clarity.
+---
 
-
-## Challenges & How I Solved Them
-- **Ending detection**: Chose the simple rule—no `choices` means an ending. `endGame()` cleans up and injects a replay button.
-- **State handling**: Kept state as `currentId` keyed into `storyNodes` to avoid complex routing.
-- **Content sanitization**: Implemented a tiny Markdown-to-HTML converter limited to bold, italics, and code to keep text expressive while safe.
-
-
-## Testing Methodology
-- Click‑through tested all branches to verify **every ending is reachable** and **each ending image is distinct**.
-- Verified the **footer script** displays the correct "Last updated" date/time.
-
-
-## What I\'d Improve Next
-- Persist progress with `localStorage`.
-- Add a mini‑map to visualize branches.
-- Add transition animations and sound.
-
-
-## Submission Checklist
-- [ ] Hosted at `http://<your domain>/ITC505/mid-term-project/index.html`
-- [ ] Screenshot taken of the working page
-- [ ] Footer snippet included (see `index.html`)
-- [ ] Uploaded HTML source code
+*Last updated: October 2025*
